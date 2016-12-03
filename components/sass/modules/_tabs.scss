@@ -1,0 +1,45 @@
+#tab-container {
+  & > div {
+    border-right: 1px solid black;
+    &:last-child {
+      border: none;
+
+    }
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.tab_box {
+	position: relative;
+  width: 33.33%;
+	background: $lightpurple;
+  text-align: center;
+  padding: 10px 0px;
+}
+
+.arrow_box {
+	position: relative;
+  width: 33.3%;
+	background: $purple;
+  text-align: center;
+  padding: 10px 0px;
+}
+.arrow_box:after, .arrow_box:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color: $purple;
+	border-width: 10px;
+	margin-left: -10px;
+}

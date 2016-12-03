@@ -1,0 +1,18 @@
+body {
+  background: $backgroundColor;
+  color: $dark;
+  font: $mainFont;
+}
+
+nav {
+  @include background-image(linear-gradient(left, $navLeft, lighten($navRight, 10)));;
+}
+
+strong {
+  font-weight: $bold;
+}
+
+p {
+  font-weight: $normal;
+  padding-bottom: 10px;
+}
