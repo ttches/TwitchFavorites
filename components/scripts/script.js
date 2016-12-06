@@ -1,8 +1,8 @@
-var streams = ["chu8", "ttches"],
-  streamsJSONP = [],
+var streams = ["chu8", "jowetv", "ttches"],
+  streamsJSONP = {},
   online = [],
   offline = [],
-  apiURL = 'https://wind-bow.gomix.me/twitch-api/streams/';
+  apiURL = 'https://wind-bow.gomix.me/twitch-api/';
 
 /* Appends scripts to HTML in order to save JSONP data to a variable from a
 different domain without being blocked by CORS and then deletes the script from
@@ -16,21 +16,23 @@ function appendAndRemove(script) {
 function callEach(streams) {
   streams.forEach(function(stream, index) {
     var script = document.createElement('script');
-    script.src = apiURL + stream + '?callback=sortStreamJSONP';
+    script.src = apiURL + 'streams/' + stream + '?callback=sortStreamJSONP';
     appendAndRemove(script);
     console.log('done with callEach');
-    console.log(stream + " " + streamsJSONP.length);
-    console.log(streamsJSONP.length);
+    console.log(stream + " " + Object.keys(streamsJSONP).length);
+    console.log(streamsJSONP);
   });
 }
 
 //collects data from the /streams API so sortOnline() can sort each stream as
 //online or offline
 function sortStreamJSONP(data) {
-  streamsJSONP.push(data);
-  console.log(data);
-  if (streamsJSONP.length == streams.length) {
+  var link = data._links.channel;
+  var username = link.substr(38, link.length);
+  streamsJSONP[username] = data;
+  if (Object.keys(streamsJSONP).length == streams.length) {
     console.log('success');
+    console.log(streams);
     sortOnline(streamsJSONP);
   }
 }
@@ -38,23 +40,24 @@ function sortStreamJSONP(data) {
 //the /channels/ api gives me information about the streamer's channel
 //categorizes each channel into offline or online
 function sortOnline(data) {
-  data.forEach(function(streamer, index) {
-    console.log(streamer.stream === null);
-    if (streamer.stream) {
-      console.log('sending online' + streams[index]);
+  for (var key in data) {
+    console.log(key);
+    console.log(data[key].stream === null);
+    if (data[key].stream) {
+      console.log('sending online' + key);
       var script = document.createElement('script');
-      script.src = apiURL + streams[index] + '?callback=addOnline';
+      script.src = apiURL + 'channels/' + key + '?callback=addOnline';
       appendAndRemove(script);
     }
-    else if (streamer.stream === null) {
-      console.log('sending offline' + streams[index]);
+    else if (data[key].stream === null) {
+      console.log('sending offline' + key);
       var script = document.createElement('script');
-      script.src = apiURL + streams[index] + '?callback=addOffline';
+      script.src = apiURL + 'channels/' + key + '?callback=addOffline';
       appendAndRemove(script);
     } else {
       alert('The Twitch API has been changed or is offline');
     }
-  });
+  }
 }
 
 //adds jsonp data for all of the online stream channels.
@@ -66,4 +69,4 @@ function addOffline(data) {
   offline.push(data);
 }
 
-callEach(streams);
+  callEach(streams);
