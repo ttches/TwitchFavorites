@@ -66,4 +66,4 @@ function addOffline(data) {
   offline.push(data);
 }
 
-  callEach(streams);
+callEach(streams);
