@@ -5,6 +5,10 @@
   padding-left: 30px;
   color: #898395;
   width: 130px;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px $purple;
+  }
 }
 
 #addStreamIcon {

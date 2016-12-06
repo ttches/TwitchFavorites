@@ -147,8 +147,13 @@ main #tab-container {
   color: #898395;
   width: 130px;
 }
+/* line 8, ../../../components/sass/modules/_nav.scss */
+#addStreamInput:focus {
+  outline: none;
+  box-shadow: 0 0 5px #6441a4;
+}
 
-/* line 10, ../../../components/sass/modules/_nav.scss */
+/* line 14, ../../../components/sass/modules/_nav.scss */
 #addStreamIcon {
   color: #898395;
   position: absolute;
@@ -241,4 +246,14 @@ main #tab-container {
   position: relative;
   margin-left: 20px;
   top: 3px;
+}
+
+/* line 1, ../../../components/sass/modules/_streams.scss */
+.online-streams {
+  background-color: #afde9c;
+}
+
+/* line 5, ../../../components/sass/modules/_streams.scss */
+.offline-streams {
+  background-color: #efeef1;
 }
