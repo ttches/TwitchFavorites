@@ -98,6 +98,12 @@ p {
   padding-bottom: 10px;
 }
 
+/* line 20, ../../../components/sass/_base.scss */
+a, u {
+  text-decoration: none;
+  color: black;
+}
+
 /* line 1, ../../../components/sass/_layout.scss */
 body {
   position: absolute;
@@ -115,6 +121,7 @@ nav {
 nav .nav-container {
   margin: 0 auto;
   width: 95%;
+  max-width: 520px;
   height: 50px;
   display: -webkit-flex;
   display: flex;
@@ -123,19 +130,27 @@ nav .nav-container {
   -webkit-justify-content: space-between;
   justify-content: space-between;
 }
-/* line 17, ../../../components/sass/_layout.scss */
+/* line 18, ../../../components/sass/_layout.scss */
 nav .nav-container p {
   padding-bottom: 0px;
 }
 
-/* line 23, ../../../components/sass/_layout.scss */
+/* line 24, ../../../components/sass/_layout.scss */
 main {
   margin: 0 auto;
+  max-width: 520px;
 }
-/* line 25, ../../../components/sass/_layout.scss */
+/* line 27, ../../../components/sass/_layout.scss */
 main #tab-container {
   display: -webkit-flex;
   display: flex;
+}
+@media (min-width: 521px) {
+  /* line 24, ../../../components/sass/_layout.scss */
+  main {
+    border: 1px solid black;
+    border-top: none;
+  }
 }
 
 /* line 1, ../../../components/sass/modules/_nav.scss */
@@ -251,9 +266,57 @@ main #tab-container {
 /* line 1, ../../../components/sass/modules/_streams.scss */
 .online-streams {
   background-color: #afde9c;
+  border-top: 1px solid black;
 }
 
-/* line 5, ../../../components/sass/modules/_streams.scss */
+/* line 6, ../../../components/sass/modules/_streams.scss */
+.online-stream,
+.offline-stream {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-height: 80px;
+}
+
+/* line 14, ../../../components/sass/modules/_streams.scss */
+.stream-logo {
+  display: -webkit-flex;
+  display: flex;
+  width: 30%;
+}
+@media (min-width: 420px) {
+  /* line 14, ../../../components/sass/modules/_streams.scss */
+  .stream-logo {
+    margin-left: 15px;
+  }
+}
+/* line 20, ../../../components/sass/modules/_streams.scss */
+.stream-logo img {
+  width: 100%;
+  max-height: 80px;
+  max-width: 80px;
+}
+
+/* line 27, ../../../components/sass/modules/_streams.scss */
+.stream-basic-info {
+  display: -webkit-flex;
+  display: flex;
+  width: 70%;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+/* line 34, ../../../components/sass/modules/_streams.scss */
+.status {
+  padding: 0;
+  margin: 0;
+  font-size: .8em;
+}
+
+/* line 40, ../../../components/sass/modules/_streams.scss */
 .offline-streams {
   background-color: #efeef1;
+  border-top: 1px solid black;
 }

@@ -11,6 +11,7 @@ nav {
   .nav-container {
     margin: 0 auto;
     width: 95%;
+    max-width: 520px;
     height: 50px;
     @include vertCenter;
     @include justify-content(space-between);
@@ -22,7 +23,12 @@ nav {
 
 main {
   margin: 0 auto;
+  max-width: 520px;
   #tab-container {
     @include display-flex();
+  }
+  @include breakpoint(521px) {
+    border: 1px solid black;
+    border-top: none;
   }
 }
