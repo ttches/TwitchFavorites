@@ -196,7 +196,7 @@ main #tab-container {
 }
 
 /* line 14, ../../../components/sass/modules/_tabs.scss */
-.tab_box {
+.tab-box {
   position: relative;
   width: 33.33%;
   background: #7d5bbe;
@@ -205,7 +205,7 @@ main #tab-container {
 }
 
 /* line 22, ../../../components/sass/modules/_tabs.scss */
-.arrow_box {
+.arrow-box {
   position: relative;
   width: 33.3%;
   background: #6441a4;
@@ -214,7 +214,7 @@ main #tab-container {
 }
 
 /* line 29, ../../../components/sass/modules/_tabs.scss */
-.arrow_box:after, .arrow_box:before {
+.arrow-box:after, .arrow-box:before {
   top: 100%;
   left: 50%;
   border: solid transparent;
@@ -226,7 +226,7 @@ main #tab-container {
 }
 
 /* line 40, ../../../components/sass/modules/_tabs.scss */
-.arrow_box:after {
+.arrow-box:after {
   border-color: rgba(136, 183, 213, 0);
   border-top-color: #6441a4;
   border-width: 10px;

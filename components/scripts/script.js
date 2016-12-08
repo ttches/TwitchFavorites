@@ -131,7 +131,7 @@ function writeHTMLOffline(data) {
         <div class="stream-basic-info">
           <a href="` + data[i].url +`">
             <h1><strong>` + data[i].display_name + `</strong></h1>
-            <p>` + (data[i].game || "Offline") +`</p>
+            <p>` + (data[i].game || "") +`</p>
           </a>
         </div><!--basic info-->
       </div><!--offline stream -->`;
@@ -169,6 +169,43 @@ function verifyStreamer(data) {
   } else {
     alert('Streamer not found.');
   }
+}
+
+/***********************************************/
+/****This code will make sorting tabs work*****/
+/**********************************************/
+
+//turn this into a self running function to save global space
+var tabElements = document.getElementsByClassName('tab-box'),
+onlineDisplay = document.getElementsByClassName('online-streams')[0].style,
+offlineDisplay = document.getElementsByClassName('offline-streams')[0].style;
+Array.from(tabElements).forEach(function(element) {
+  element.addEventListener('click', function() {
+    var sibBoxes = document.getElementById('tab-container').childNodes,
+        target = event.target;
+    removeArrowBoxCSS(sibBoxes);
+    event.target.closest('div').className="tab-box arrow-box";
+    if (target.closest('div') === sibBoxes[1]) {
+      offlineDisplay.display = "block";
+      onlineDisplay.display = "block";
+    }
+    else if (target.closest('div') === sibBoxes[3]) {
+      offlineDisplay.display = "none";
+      onlineDisplay.display = "block";
+    }
+    else if (target.closest('div') === sibBoxes[5]) {
+      offlineDisplay.display = "block";
+      onlineDisplay.display = "none";
+
+    }
+  });
+});
+
+//removes the arrow-box class from all tabs
+function removeArrowBoxCSS(sib) {
+  sib.forEach(function(box) {
+    box.className = "tab-box";
+  });
 }
 
 setTimeout(function(){ callEach(streams); }, 500);

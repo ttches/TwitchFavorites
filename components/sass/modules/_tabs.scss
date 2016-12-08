@@ -11,7 +11,7 @@
   }
 }
 
-.tab_box {
+.tab-box {
 	position: relative;
   width: 33.33%;
 	background: $lightpurple;
@@ -19,14 +19,14 @@
   padding: 10px 0px;
 }
 
-.arrow_box {
+.arrow-box {
 	position: relative;
   width: 33.3%;
 	background: $purple;
   text-align: center;
   padding: 10px 0px;
 }
-.arrow_box:after, .arrow_box:before {
+.arrow-box:after, .arrow-box:before {
 	top: 100%;
 	left: 50%;
 	border: solid transparent;
@@ -37,7 +37,7 @@
 	pointer-events: none;
 }
 
-.arrow_box:after {
+.arrow-box:after {
 	border-color: rgba(136, 183, 213, 0);
 	border-top-color: $purple;
 	border-width: 10px;
