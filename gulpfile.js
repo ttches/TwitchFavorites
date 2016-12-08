@@ -35,8 +35,8 @@ htmlSources = [outputDir + '*.html'];
 gulp.task('js', function() {
   gulp.src(jsSources)
     .pipe(concat('script.js'))
-    .pipe(browserify())
-    .on('error', gutil.log)
+    //.pipe(browserify())
+    //.on('error', gutil.log)
     .pipe(gulpif(env === 'production', uglify()))
     .pipe(gulp.dest(outputDir + 'js'))
     .pipe(connect.reload());

@@ -13,7 +13,7 @@
     <nav>
       <div class="nav-container">
         <img src="http://vignette4.wikia.nocookie.net/logopedia/images/2/26/Twitch_logo.svg/revision/latest/scale-to-width-down/639?cb=20140727180649" width="100px">
-        <form>
+        <form onsubmit='addStreamer(document.getElementById("addStreamInput").value.toLowerCase());return false;'>
           <div style="position: relative;">
             <div id="addStreamIcon"><p><i class="fa fa-user-o" aria-hidden="true"></i></p></div>
             <input id="addStreamInput" type="text" placeholder="Add a streamer">

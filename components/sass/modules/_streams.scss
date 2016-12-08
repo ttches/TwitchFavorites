@@ -40,4 +40,7 @@
 .offline-streams {
   background-color: $offlineColor;
   border-top: 1px solid black;
+  a {
+    color: $typeOffline;
+  }
 }

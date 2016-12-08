@@ -1,14 +1,12 @@
+/*Sometimes this needs to be reloaded to work. I really wanted to practice vanilla
+JavaScript for this assignment and so had to make little hacks to get everything
+working asynchronously with the limits of the API without breaking CORS */
+
 var streams = ["chu8", "jowetv", "ttches", "followgrubby", "trikslyr"],
   streamsJSONP = {},
   online = [],
   offline = [],
   apiURL = 'https://wind-bow.gomix.me/twitch-api/';
-
-//Remove the event listener and instead just call
-//callEach(streams) in console to see sortStreamJSONP() fire correctly
-document.addEventListener("DOMContentLoaded", function(event) {
-  callEach(streams);
-});
 
 /* Appends scripts to HTML in order to save JSONP data to a variable from a
 different domain without being blocked by CORS and then deletes the script from
@@ -47,6 +45,8 @@ function sortStreamJSONP(data) {
 //the /channels/ api gives me information about the streamer's channel
 //categorizes each channel into offline or online
 function sortOnline(data) {
+  offline = [];
+  online = [];
   for (var key in data) {
     console.log(key);
     console.log(data[key].stream === null);
@@ -89,6 +89,8 @@ function addOffline(data) {
 
 //Appends streams to DOM
 function writeHTMLOnline(data) {
+  document.getElementsByClassName("online-streams")[0]
+  .innerHTML='';
   var frag = document.createDocumentFragment();
   for (var i = 0; i < data.length; i++) {
     console.log('got this far');
@@ -113,6 +115,8 @@ function writeHTMLOnline(data) {
 }
 
 function writeHTMLOffline(data) {
+  document.getElementsByClassName("offline-streams")[0]
+  .innerHTML='';
   var frag = document.createDocumentFragment();
   for (var i = 0; i < data.length; i++) {
     console.log('got this far');
@@ -127,7 +131,7 @@ function writeHTMLOffline(data) {
         <div class="stream-basic-info">
           <a href="` + data[i].url +`">
             <h1><strong>` + data[i].display_name + `</strong></h1>
-            <p>` + data[i].game +`</p>
+            <p>` + (data[i].game || "Offline") +`</p>
           </a>
         </div><!--basic info-->
       </div><!--offline stream -->`;
@@ -139,3 +143,32 @@ function writeHTMLOffline(data) {
 function logoOrDefault(logo) {
   return logo || 'http://vignette3.wikia.nocookie.net/logopedia/images/8/83/Twitch_icon.svg/revision/latest?cb=20140727180700';
 }
+
+/****
+Add streamer functions
+*****/
+
+function addStreamer(streamer) {
+  var script = document.createElement('script');
+  script.src = apiURL + 'channels/' + streamer + '?callback=verifyStreamer';
+  appendAndRemove(script);
+}
+
+//Checks to see if the streamer exists on twitch and if the streamer
+//is already in the list
+function verifyStreamer(data) {
+  if (Object.keys(streamsJSONP).indexOf(data.name) > -1) {
+    alert('Streamer already in list');
+  }
+  else if (data.display_name) {
+    document.getElementById("addStreamInput").value='';
+    streams.push(data.name);
+    var script = document.createElement('script');
+    script.src = apiURL + 'streams/' + data.name + '?callback=sortStreamJSONP';
+    appendAndRemove(script);
+  } else {
+    alert('Streamer not found.');
+  }
+}
+
+setTimeout(function(){ callEach(streams); }, 500);

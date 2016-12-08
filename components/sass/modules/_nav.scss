@@ -9,6 +9,9 @@
     outline: none;
     box-shadow: 0 0 5px $purple;
   }
+  @include breakpoint(350px) {
+    width: 170px;
+  }
 }
 
 #addStreamIcon {
