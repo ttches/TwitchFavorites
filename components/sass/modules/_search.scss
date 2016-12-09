@@ -7,7 +7,7 @@
 }
 
 #searchInput {
-  width: 80%;
+  width: 70%;
   padding: 7px;
   padding-left: 30px;
   border: 1px solid black;
@@ -24,5 +24,15 @@
     position: relative;
     margin-left: 20px;
     top: 3px;
+  }
+}
+
+#refreshButton {
+  border-right: none;
+  i {
+    position: relative;
+    right: 7px;
+    top: 6px;
+    font-size: 1.3em;
   }
 }

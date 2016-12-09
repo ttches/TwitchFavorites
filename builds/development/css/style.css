@@ -246,7 +246,7 @@ main #tab-container {
 
 /* line 9, ../../../components/sass/modules/_search.scss */
 #searchInput {
-  width: 80%;
+  width: 70%;
   padding: 7px;
   padding-left: 30px;
   border: 1px solid black;
@@ -269,9 +269,21 @@ main #tab-container {
   top: 3px;
 }
 
+/* line 30, ../../../components/sass/modules/_search.scss */
+#refreshButton {
+  border-right: none;
+}
+/* line 32, ../../../components/sass/modules/_search.scss */
+#refreshButton i {
+  position: relative;
+  right: 7px;
+  top: 6px;
+  font-size: 1.3em;
+}
+
 /* line 1, ../../../components/sass/modules/_streams.scss */
 .online-streams {
-  background-color: #afde9c;
+  background-color: #d4c9e9;
   border-top: 1px solid black;
 }
 
@@ -291,6 +303,7 @@ main #tab-container {
   display: -webkit-flex;
   display: flex;
   width: 30%;
+  max-width: 100px;
 }
 @media (min-width: 420px) {
   /* line 14, ../../../components/sass/modules/_streams.scss */
@@ -298,14 +311,14 @@ main #tab-container {
     margin-left: 15px;
   }
 }
-/* line 20, ../../../components/sass/modules/_streams.scss */
+/* line 21, ../../../components/sass/modules/_streams.scss */
 .stream-logo img {
   width: 100%;
   max-height: 80px;
   max-width: 80px;
 }
 
-/* line 27, ../../../components/sass/modules/_streams.scss */
+/* line 28, ../../../components/sass/modules/_streams.scss */
 .stream-basic-info {
   display: -webkit-flex;
   display: flex;
@@ -314,19 +327,41 @@ main #tab-container {
   margin-left: 15px;
 }
 
-/* line 34, ../../../components/sass/modules/_streams.scss */
+/* line 35, ../../../components/sass/modules/_streams.scss */
 .status {
   padding: 0;
   margin: 0;
   font-size: .8em;
 }
 
-/* line 40, ../../../components/sass/modules/_streams.scss */
+/* line 41, ../../../components/sass/modules/_streams.scss */
 .offline-streams {
   background-color: #efeef1;
   border-top: 1px solid black;
 }
-/* line 43, ../../../components/sass/modules/_streams.scss */
+/* line 44, ../../../components/sass/modules/_streams.scss */
 .offline-streams a {
   color: #807b8b;
+}
+
+/* line 49, ../../../components/sass/modules/_streams.scss */
+.online-light {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  background-color: #00fa4f;
+  border-radius: 50%;
+  box-shadow: 0 0 3px #00fa4f, 0 0 10px #00fa4f;
+  animation: inex 3s infinite linear;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+@keyframes inex {
+  50% {
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 1;
+  }
 }

@@ -18,6 +18,7 @@ function appendAndRemove(script) {
 
 // the /streams/ api tells me whether or not a streamer is online.
 function callEach(streams) {
+  streamsJSONP = {};
   streams.forEach(function(stream, index) {
     var script = document.createElement('script');
     script.src = apiURL + 'streams/' + stream + '?callback=sortStreamJSONP';
@@ -103,6 +104,7 @@ function writeHTMLOnline(data) {
           </a>
         </div> <!--logo-->
         <div class="stream-basic-info">
+        <div class="online-light"></div>
           <a href="` + data[i].url +`">
             <h1><strong>` + data[i].display_name + `</strong></h1>
             <p>` + data[i].game +`</p>
