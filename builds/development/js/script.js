@@ -71,7 +71,7 @@ function sortOnline(data) {
 //adds jsonp data for all of the online stream channels.
 function addOnline(data) {
   online[data.name] = data;
-  if (online.length + offline.length === Object.keys(streamsJSONP).length) {
+  if (Object.keys(online).length + Object.keys(offline).length === Object.keys(streamsJSONP).length) {
     console.log('writing html');
     writeHTMLOnline(online);
     writeHTMLOffline(offline);
@@ -97,7 +97,8 @@ function writeHTMLOnline(data) {
   for (var i = 0; i < sortedData.length; i++) {
     var div = document.createElement('div');
     div.innerHTML =
-      `<div class="online-stream">
+      `<div class="online-stream" id="`+ (data[sortedData[i]].display_name+
+        data[sortedData[i]].game).toLowerCase() +`">
         <div class="stream-logo">
           <a href="` + data[sortedData[i]].url +`">
             <img src="`+ logoOrDefault(data[sortedData[i]].logo) +`">
@@ -124,7 +125,8 @@ function writeHTMLOffline(data) {
   for (var i = 0; i < sortedData.length; i++) {
     var div = document.createElement('div');
     div.innerHTML =
-      `<div class="offline-stream">
+      `<div class="offline-stream" id="`+ (data[sortedData[i]].display_name+
+        data[sortedData[i]].game).toLowerCase() +`">
         <div class="stream-logo">
           <a href="` + data[sortedData[i]].url +`">
             <img src="` + logoOrDefault(data[sortedData[i]].logo) + `">
@@ -209,5 +211,40 @@ function removeArrowBoxCSS(sib) {
     box.className = "tab-box";
   });
 }
+
+/***********************************************/
+/****This code will allow search to work********/
+/**********************************************/
+
+document.getElementById('searchInput').addEventListener('keyup', function() {
+  var input = document.getElementById('searchInput').value,
+  onlineStreams = document.querySelectorAll('.online-stream');
+  offlineStreams = document.querySelectorAll('.offline-stream');
+  console.log(input);
+  if (input === '') {
+    console.log('input nothing');
+    onlineStreams.forEach(function(div) {
+      div.style.display = 'flex';
+    });
+    offlineStreams.forEach(function(div) {
+      div.style.display = 'flex';
+    });
+  } else {
+    onlineStreams.forEach(function(div) {
+      if (div.id.indexOf(input) > -1) {
+        div.style.display = 'flex';
+      } else {
+        div.style.display = 'none';
+      }
+    });
+    offlineStreams.forEach(function(div) {
+      if (div.id.indexOf(input) > -1) {
+        div.style.display = 'flex';
+      } else {
+        div.style.display = 'none';
+      }
+    });
+  }
+});
 
 setTimeout(function(){ callEach(streams); }, 500);
