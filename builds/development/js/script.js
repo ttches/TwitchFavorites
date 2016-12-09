@@ -4,8 +4,8 @@ working asynchronously with the limits of the API without breaking CORS */
 
 var streams = ["chu8", "jowetv", "ttches", "followgrubby", "trikslyr"],
   streamsJSONP = {},
-  online = [],
-  offline = [],
+  online = {},
+  offline = {},
   apiURL = 'https://wind-bow.gomix.me/twitch-api/';
 
 /* Appends scripts to HTML in order to save JSONP data to a variable from a
@@ -46,8 +46,8 @@ function sortStreamJSONP(data) {
 //the /channels/ api gives me information about the streamer's channel
 //categorizes each channel into offline or online
 function sortOnline(data) {
-  offline = [];
-  online = [];
+  offline = {};
+  online = {};
   for (var key in data) {
     console.log(key);
     console.log(data[key].stream === null);
@@ -70,7 +70,7 @@ function sortOnline(data) {
 
 //adds jsonp data for all of the online stream channels.
 function addOnline(data) {
-  online.push(data);
+  online[data.name] = data;
   if (online.length + offline.length === Object.keys(streamsJSONP).length) {
     console.log('writing html');
     writeHTMLOnline(online);
@@ -79,9 +79,9 @@ function addOnline(data) {
 }
 //adds jsonp data for all of the offline stream channels.
 function addOffline(data) {
-  offline.push(data);
-  console.log(online.length + offline.length + "streamers offline and online");
-  if (online.length + offline.length === Object.keys(streamsJSONP).length) {
+  offline[data.name] = data;
+  console.log(Object.keys(online).length + Object.keys(offline).length + "streamers offline and online");
+  if (Object.keys(online).length + Object.keys(offline).length === Object.keys(streamsJSONP).length) {
     console.log('writing html');
     writeHTMLOnline(online);
     writeHTMLOffline(offline);
@@ -92,22 +92,22 @@ function addOffline(data) {
 function writeHTMLOnline(data) {
   document.getElementsByClassName("online-streams")[0]
   .innerHTML='';
-  var frag = document.createDocumentFragment();
-  for (var i = 0; i < data.length; i++) {
-    console.log('got this far');
+  var frag = document.createDocumentFragment(),
+  sortedData = Object.keys(data).sort();
+  for (var i = 0; i < sortedData.length; i++) {
     var div = document.createElement('div');
     div.innerHTML =
       `<div class="online-stream">
         <div class="stream-logo">
-          <a href="` + data[i].url +`">
-            <img src="`+ logoOrDefault(data[i].logo) +`">
+          <a href="` + data[sortedData[i]].url +`">
+            <img src="`+ logoOrDefault(data[sortedData[i]].logo) +`">
           </a>
         </div> <!--logo-->
         <div class="stream-basic-info">
         <div class="online-light"></div>
-          <a href="` + data[i].url +`">
-            <h1><strong>` + data[i].display_name + `</strong></h1>
-            <p>` + data[i].game +`</p>
+          <a href="` + data[sortedData[i]].url +`">
+            <h1><strong>` + data[sortedData[i]].display_name + `</strong></h1>
+            <p>` + data[sortedData[i]].game +`</p>
           </a>
         </div><!--basic info-->
       </div><!--online stream -->`;
@@ -120,20 +120,20 @@ function writeHTMLOffline(data) {
   document.getElementsByClassName("offline-streams")[0]
   .innerHTML='';
   var frag = document.createDocumentFragment();
-  for (var i = 0; i < data.length; i++) {
-    console.log('got this far');
+  sortedData = Object.keys(data).sort();
+  for (var i = 0; i < sortedData.length; i++) {
     var div = document.createElement('div');
     div.innerHTML =
       `<div class="offline-stream">
         <div class="stream-logo">
-          <a href="` + data[i].url +`">
-            <img src="` + logoOrDefault(data[i].logo) + `">
+          <a href="` + data[sortedData[i]].url +`">
+            <img src="` + logoOrDefault(data[sortedData[i]].logo) + `">
           </a>
         </div> <!--logo-->
         <div class="stream-basic-info">
-          <a href="` + data[i].url +`">
-            <h1><strong>` + data[i].display_name + `</strong></h1>
-            <p>` + (data[i].game || "") +`</p>
+          <a href="` + data[sortedData[i]].url +`">
+            <h1><strong>` + data[sortedData[i]].display_name + `</strong></h1>
+            <p>` + (data[sortedData[i]].game || "") +`</p>
           </a>
         </div><!--basic info-->
       </div><!--offline stream -->`;

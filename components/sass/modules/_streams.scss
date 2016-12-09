@@ -8,16 +8,16 @@
   @include display-flex;
   @include flex-wrap(nowrap);
   width: 100%;
-  max-height: 80px;
+  height: 80px;
+  //The next two lines allow for the div to change in height to fit content
+  overflow: hidden;
+  height: 1%;
 }
 
 .stream-logo {
   @include display-flex;
   width: 30%;
   max-width: 100px;
-  @include breakpoint(420px) {
-  margin-left: 15px;
-  }
   img {
     width: 100%;
     max-height: 80px;
