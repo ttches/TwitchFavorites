@@ -32,6 +32,14 @@ function callEach(streams) {
 //collects data from the /streams API so sortOnline() can sort each stream as
 //online or offline
 function sortStreamJSONP(data) {
+  document.getElementById('loading-div').style.display = 'flex';
+  document.getElementsByClassName('online-streams')[0].style.display = 'none';
+  document.getElementsByClassName('offline-streams')[0].style.display = 'none';
+  if (data._links === undefined) {
+    console.log('readloading');
+    setTimeout(function(){ callEach(streams); }, 1000);
+    return;
+  }
   var link = data._links.channel;
   var username = link.substr(38, link.length);
   streamsJSONP[username] = data;
@@ -114,6 +122,9 @@ function writeHTMLOnline(data) {
       </div><!--online stream -->`;
     frag.appendChild(div.firstChild);
   }
+  document.getElementById('loading-div').style.display = 'none';
+  document.getElementsByClassName('online-streams')[0].style.display = 'block';
+  document.getElementsByClassName('offline-streams')[0].style.display = 'block';
   document.getElementsByClassName("online-streams")[0].appendChild(frag);
 }
 
@@ -141,6 +152,7 @@ function writeHTMLOffline(data) {
       </div><!--offline stream -->`;
     frag.appendChild(div.firstChild);
   }
+  document.getElementById('loading-div').style.display = 'none';
   document.getElementsByClassName("offline-streams")[0].appendChild(frag);
 }
 
@@ -247,4 +259,4 @@ document.getElementById('searchInput').addEventListener('keyup', function() {
   }
 });
 
-setTimeout(function(){ callEach(streams); }, 500);
+setTimeout(function(){ callEach(streams); }, 1000);

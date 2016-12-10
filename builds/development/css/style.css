@@ -282,12 +282,52 @@ main #tab-container {
 }
 
 /* line 1, ../../../components/sass/modules/_streams.scss */
+#loading-div {
+  display: -webkit-flex;
+  display: flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  height: 160px;
+  background-color: white;
+}
+
+/* line 8, ../../../components/sass/modules/_streams.scss */
+.loader {
+  margin: 0 auto;
+  border: 10px solid #efeef1;
+  border-radius: 50%;
+  border-top: 10px solid #6441a4;
+  width: 90px;
+  height: 90px;
+  -webkit-animation: spin .5s linear infinite;
+  animation: spin .5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* line 29, ../../../components/sass/modules/_streams.scss */
 .online-streams {
   background-color: #d4c9e9;
   border-top: 1px solid black;
 }
 
-/* line 6, ../../../components/sass/modules/_streams.scss */
+/* line 34, ../../../components/sass/modules/_streams.scss */
 .online-stream,
 .offline-stream {
   display: -webkit-flex;
@@ -299,21 +339,21 @@ main #tab-container {
   overflow: hidden;
 }
 
-/* line 16, ../../../components/sass/modules/_streams.scss */
+/* line 44, ../../../components/sass/modules/_streams.scss */
 .stream-logo {
   display: -webkit-flex;
   display: flex;
   width: 30%;
   max-width: 100px;
 }
-/* line 20, ../../../components/sass/modules/_streams.scss */
+/* line 48, ../../../components/sass/modules/_streams.scss */
 .stream-logo img {
   width: 80px;
   height: 100%;
   max-height: 87px;
 }
 
-/* line 28, ../../../components/sass/modules/_streams.scss */
+/* line 56, ../../../components/sass/modules/_streams.scss */
 .stream-basic-info {
   display: -webkit-flex;
   display: flex;
@@ -321,29 +361,29 @@ main #tab-container {
   padding: 15px;
   padding-bottom: 0;
 }
-/* line 33, ../../../components/sass/modules/_streams.scss */
+/* line 61, ../../../components/sass/modules/_streams.scss */
 .stream-basic-info p {
   padding: 0;
 }
 
-/* line 38, ../../../components/sass/modules/_streams.scss */
+/* line 66, ../../../components/sass/modules/_streams.scss */
 .status {
   padding: 0;
   margin: 0;
   font-size: .8em;
 }
 
-/* line 44, ../../../components/sass/modules/_streams.scss */
+/* line 72, ../../../components/sass/modules/_streams.scss */
 .offline-streams {
   background-color: #efeef1;
   border-top: 1px solid black;
 }
-/* line 47, ../../../components/sass/modules/_streams.scss */
+/* line 75, ../../../components/sass/modules/_streams.scss */
 .offline-streams a {
   color: #807b8b;
 }
 
-/* line 52, ../../../components/sass/modules/_streams.scss */
+/* line 80, ../../../components/sass/modules/_streams.scss */
 .online-light {
   display: inline-block;
   height: 10px;
@@ -351,7 +391,7 @@ main #tab-container {
   background-color: #00fa4f;
   border-radius: 50%;
   box-shadow: 0 0 3px #00fa4f, 0 0 10px #00fa4f;
-  animation: inex 3s infinite linear;
+  animation: inex 1.5s infinite linear;
   margin-right: 5px;
   margin-top: 5px;
 }
