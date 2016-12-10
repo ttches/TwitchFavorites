@@ -404,3 +404,18 @@ main #tab-container {
     opacity: 1;
   }
 }
+/* line 102, ../../../components/sass/modules/_streams.scss */
+.delete-container {
+  display: -webkit-flex;
+  display: flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+/* line 107, ../../../components/sass/modules/_streams.scss */
+.delete-checkbox {
+  width: 15px;
+  height: 15px;
+}

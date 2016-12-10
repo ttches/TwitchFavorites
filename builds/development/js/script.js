@@ -2,7 +2,7 @@
 JavaScript for this assignment and so had to make little hacks to get everything
 working asynchronously with the limits of the API without breaking CORS */
 
-var streams = ["chu8", "jowetv", "ttches", "followgrubby", "trikslyr"],
+var streams = ["chu8", "jowetv", "hiko", "ttches", "followgrubby", "trikslyr"],
   streamsJSONP = {},
   online = {},
   offline = {},
@@ -37,7 +37,7 @@ function sortStreamJSONP(data) {
   document.getElementsByClassName('offline-streams')[0].style.display = 'none';
   if (data._links === undefined) {
     console.log('readloading');
-    setTimeout(function(){ callEach(streams); }, 1000);
+    alert('API error, please reload');
     return;
   }
   var link = data._links.channel;
@@ -153,6 +153,8 @@ function writeHTMLOffline(data) {
     frag.appendChild(div.firstChild);
   }
   document.getElementById('loading-div').style.display = 'none';
+  document.getElementsByClassName('online-streams')[0].style.display = 'block';
+  document.getElementsByClassName('offline-streams')[0].style.display = 'block';
   document.getElementsByClassName("offline-streams")[0].appendChild(frag);
 }
 
@@ -229,7 +231,7 @@ function removeArrowBoxCSS(sib) {
 /**********************************************/
 
 document.getElementById('searchInput').addEventListener('keyup', function() {
-  var input = document.getElementById('searchInput').value,
+  var input = document.getElementById('searchInput').value.toLowerCase(),
   onlineStreams = document.querySelectorAll('.online-stream');
   offlineStreams = document.querySelectorAll('.offline-stream');
   console.log(input);

@@ -1,6 +1,6 @@
 #loading-div {
   @include display-flex;
-  @include vertCenter();
+  @include vertCenter;
   height: 160px;
   background-color: white;
 }
@@ -97,4 +97,14 @@
 	{
 		opacity: 1;
 	}
+}
+
+.delete-container {
+  @include display-flex;
+  @include vertCenter;
+}
+
+.delete-checkbox {
+  width: 15px;
+  height: 15px;
 }
